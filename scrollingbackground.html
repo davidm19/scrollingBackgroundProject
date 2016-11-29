@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>FishTank 2.0</title>
+		<title>Scroller Project</title>
 		<script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
 		<script type="text/processing" data-processing-target="mycanvas">
         //Your code goes here
@@ -10,10 +10,12 @@
 
         HorizontalLine fastLine = new HorizontalLine(50, 2.5);
 
+				frontBuilding newBuilding = new frontBuilding(20, 2.0);
+
         //since these are variables we don't want to ever change in the code, we capitalize them
         var WINDOW_WIDTH = 400;
         var WINDOW_HEIGHT = 400;
-        var GREY = 204;
+        var backgroundColor = color(64, 159, 232);
         //This function only runs once at the start of the program
         void setup() {
           size(WINDOW_WIDTH, WINDOW_HEIGHT); //sets the size of the window
@@ -26,11 +28,9 @@
         //called repeatedly
         void draw() {
 
-          background(GREY); //needed in the draw function to "clear" the screen between updates
+          background(backgroundColor); //needed in the draw function to "clear" the screen between updates
 
-          slowLine.moveLine();
-
-          fastLine.moveLine();
+					newBuilding.drawBuilding();
 
         }
 
@@ -81,13 +81,22 @@
 
 				class frontBuilding {
 
-					var buildingXPos, buildingYPos, buildingXDist, buildingYDist
+					var buildingXPos, buildingYPos, buildingXDist, buildingYDist, buildingColor;
 
 					frontBuilding (var bh, var bl)
 					{
-						//DECLARE THE VARIABLES
+						buildingXPos = random(1,400);
+						buildingYPos = random(225,400);
+						buildingXDist = 45; //[40, 60, 80];
+						buildingYDist = random(1,175);
+						buildingColor = color(102, 123, 155); //[color(102, 123, 155), color(49, 75, 117), color(50, 71, 104)];
 					}
 					//make your function
+					void drawBuilding() {
+						noStroke();
+						fill(buildingColor); //color[1]
+						rect(buildingXPos, buildingYPos, buildingXDist, buildingYDist);
+					}
 				}
         </script>
     </head>
