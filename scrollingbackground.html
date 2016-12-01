@@ -88,15 +88,15 @@
 
 					frontBuilding (var bh, var bl)
 					{
-						buildingXPos = random(1,400);
-						buildingYPos = random(225,400);
+						buildingXPos = -45;
+						buildingYPos = 359;
 						buildingXDist = 45; //[40, 60, 80];
 						buildingYDist = random(1,175);
 						buildingColor = color(102, 123, 155); //[color(102, 123, 155), color(49, 75, 117), color(50, 71, 104)];
 					}
 					//make your function
 					void drawBuilding() {
-						noStroke();
+						stroke(0,0,0);
 						fill(buildingColor); //color[1]
 						rect(buildingXPos, buildingYPos, BUILDINGXDISTANCE[0], BUILDINGYDISTANCE[0]);
 					}
@@ -110,7 +110,7 @@
 						buildingXPos += 3;
 						if(buildingXPos > WINDOW_WIDTH)
 						{
-							buildingXPos = -40
+							buildingXPos = -45;
 						}
 					}
 				}
