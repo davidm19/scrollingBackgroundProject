@@ -16,6 +16,8 @@
         var WINDOW_WIDTH = 400;
         var WINDOW_HEIGHT = 400;
         var backgroundColor = color(64, 159, 232);
+	var BUILDINGXDISTANCE = [40, 60, 80];
+	var BUILDINGYDISTANCE = [40, 60, 80];
         //This function only runs once at the start of the program
         void setup() {
           size(WINDOW_WIDTH, WINDOW_HEIGHT); //sets the size of the window
@@ -95,7 +97,7 @@
 					void drawBuilding() {
 						noStroke();
 						fill(buildingColor); //color[1]
-						rect(buildingXPos, buildingYPos, buildingXDist, buildingYDist);
+						rect(buildingXPos, buildingYPos, BUILDINGXDISTANCE[0], BUILDINGYDISTANCE[0]);
 					}
 				}
         </script>
