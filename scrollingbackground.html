@@ -16,13 +16,16 @@
         var WINDOW_WIDTH = 400;
         var WINDOW_HEIGHT = 400;
         var backgroundColor = color(64, 159, 232);
-	var BUILDINGXDISTANCE = [40, 60, 80];
-	var BUILDINGYDISTANCE = [40, 60, 80];
+				var BUILDINGXDISTANCE = [40, 60, 80];
+				var BUILDINGYDISTANCE = [40, 60, 80];
+
+				ArrayList<Skyline> skylineList;
         //This function only runs once at the start of the program
         void setup() {
           size(WINDOW_WIDTH, WINDOW_HEIGHT); //sets the size of the window
 
           frameRate(30); //how many times the draw function is called per second
+
 
         }
 
@@ -89,16 +92,16 @@
 					frontBuilding (var bh, var bl)
 					{
 						buildingXPos = -45;
-						buildingYPos = 359;
-						buildingXDist = 45; //[40, 60, 80];
-						buildingYDist = random(1,175);
+						buildingYPos = 349;
+						buildingXDist = 50; //[40, 60, 80];
+						buildingYDist = 50;
 						buildingColor = color(102, 123, 155); //[color(102, 123, 155), color(49, 75, 117), color(50, 71, 104)];
 					}
 					//make your function
 					void drawBuilding() {
 						stroke(0,0,0);
 						fill(buildingColor); //color[1]
-						rect(buildingXPos, buildingYPos, BUILDINGXDISTANCE[0], BUILDINGYDISTANCE[0]);
+						rect(buildingXPos, buildingYPos, buildingXDist, buildingYDist);
 					}
 
 					void buildingScroll()
@@ -114,6 +117,12 @@
 						}
 					}
 				}
+
+				class Skyline
+				{
+
+				}
+
         </script>
     </head>
 
