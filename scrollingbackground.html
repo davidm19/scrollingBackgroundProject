@@ -33,6 +33,7 @@
           background(backgroundColor); //needed in the draw function to "clear" the screen between updates
 
 					newBuilding.drawBuilding();
+					newBuilding.buildingScroll();
 
         }
 
@@ -98,6 +99,19 @@
 						noStroke();
 						fill(buildingColor); //color[1]
 						rect(buildingXPos, buildingYPos, BUILDINGXDISTANCE[0], BUILDINGYDISTANCE[0]);
+					}
+
+					void buildingScroll()
+					{
+						scrollBuilding();
+					}
+					void scrollBuilding()
+					{
+						buildingXPos += 3;
+						if(buildingXPos > WINDOW_WIDTH)
+						{
+							buildingXPos = -40
+						}
 					}
 				}
         </script>
