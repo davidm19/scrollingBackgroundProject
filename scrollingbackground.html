@@ -5,12 +5,13 @@
 		<script type="text/processing" data-processing-target="mycanvas">
 
 		Building testBuilding = new Building(0, random(30,100));
-		Skyline instance = new Skyline();
-		//TODO: Create an instance of your Skyline object
+		Skyline frontSkyline = new Skyline(random(50, 200), 5, color(165, 178, 198));
+		Skyline midSkyline = new Skyline(random(250, 500), 7, color(119, 129, 145));
+		Skyline backSkyline = new Skyline(random(550, 650), 9, color((69, 74, 84)));
 
         //since these are variables we don't want to ever change in the code, we capitalize them
-        var WINDOW_WIDTH = screen.width;
-        var WINDOW_HEIGHT = 400;
+        var WINDOW_WIDTH = screen.width - 15;
+        var WINDOW_HEIGHT = 725;
         var SKYCOLOR = color(64, 159, 232);
 
         //This function only runs once at the start of the program
@@ -23,21 +24,23 @@
         void draw() {
         	background(SKYCOLOR); //needed in the draw function to "clear" the screen between updates
 	  			// testBuilding.drawAndUpdate();
-					instance.moveSkyline();
-
-	  		//TODO: Call drawSkyline on your Skyline object
-
+					backSkyline.moveSkyline();
+					midSkyline.moveSkyline();
+					frontSkyline.moveSkyline();
         }
 
 
 		class Skyline {
 			ArrayList<Building> buildingList;
-			var xPosition, bw;
+			var xPosition, bw, buildingHeight, speed, buildingColor;
 
-			Skyline(){
+			Skyline(float bh, float s, float bC){
 				buildingList = new ArrayList<Building>();
 				xPosition = 0;
 				bw = 100;
+				buildingHeight = bh;
+				speed = s;
+				buildingColor = bC;
 				fillSkyline();//when a Skyline is created it automatically has enough buildings to fill the screen
 			}
 
@@ -62,13 +65,13 @@
 				for(var i=0; i < buildingList.size(); i++)
 				{
 					Building sampleBuilding = buildingList.get(i);
-					sampleBuilding.update(4);
+					sampleBuilding.update(speed);
 				}
 			}
 
 			void addBuilding(){
 				var randomBuildingWidth = random(50,125);
-				Building currentBuilding = new Building(xPosition, randomBuildingWidth);
+				Building currentBuilding = new Building(xPosition, randomBuildingWidth, buildingHeight, buildingColor);
 				buildingList.add(currentBuilding);
 				xPosition += randomBuildingWidth;
 			}
@@ -85,11 +88,11 @@
         class Building {
         	var xPosition, yPosition, buildingHeight, buildingWidth;
         	var buildingColor;
-        	Building(var xPos, var bw ) {
-        		buildingHeight = random(30,250);
+        	Building(var xPos, var bw, var bH, bC) {
+        		buildingHeight = random(30,bH);
         		buildingWidth = bw;
         		xPosition = xPos;
-        		buildingColor = color(102,123,155);
+        		buildingColor = bC;
         	}
 
         	void drawAndUpdate()
