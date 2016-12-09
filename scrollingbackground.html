@@ -8,7 +8,7 @@
 		Skyline midSkyline = new Skyline(random(300, 450), 7.5, color(115, 115, 115));
 		Skyline backSkyline = new Skyline(random(500, 580), 9.5, color(65, 65, 65));
 
-		Sun newSun = new Sun(-100, 75, 100);
+		Sun newSun = new Sun(0, 75, 100);
 
         //since these are variables we don't want to ever change in the code, we capitalize them
         var WINDOW_WIDTH = screen.width - 15;
@@ -60,11 +60,11 @@
 			}
 
 			void moveSun() {
-				sunPosX += 1;
+				sunPosX += 0.1;
 				if (sunPosX - 100 > width)
 				{
 					// sunColor = color(255,255,255);
-					sunPosX = -40;
+					sunPosX = -100;
 				}
 			}
 		}
