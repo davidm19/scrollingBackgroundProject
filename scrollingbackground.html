@@ -5,30 +5,68 @@
 		<script type="text/processing" data-processing-target="mycanvas">
 
 		Building testBuilding = new Building(0, random(30,100));
-		Skyline frontSkyline = new Skyline(random(50, 200), 5, color(165, 178, 198));
-		Skyline midSkyline = new Skyline(random(250, 500), 7, color(119, 129, 145));
-		Skyline backSkyline = new Skyline(random(550, 650), 9, color((69, 74, 84)));
+		Skyline frontSkyline = new Skyline(random(100, 250), 5.5, color(165, 178, 198)); //lower height interval //building color: color(165, 178, 198)
+		Skyline midSkyline = new Skyline(random(300, 450), 7.5, color(119, 129, 145)); //building color: color(119, 129, 145)
+		Skyline backSkyline = new Skyline(random(500, 580), 9.5, color(69, 74, 84)); //building color: color(69, 74, 84)
+		Sun newSun = new Sun(-100, 75, 100);
 
         //since these are variables we don't want to ever change in the code, we capitalize them
         var WINDOW_WIDTH = screen.width - 15;
         var WINDOW_HEIGHT = 725;
         var SKYCOLOR = color(64, 159, 232);
+				var SONG = new Audio('skylineMusic.mp3');
+
+				PImage b;
+				PImage c;
 
         //This function only runs once at the start of the program
         void setup() {
+					b = loadImage("skylineProjWallpaper.jpg");
+					c = loadImage("skylineProjWallpaperNight");
           size(WINDOW_WIDTH, WINDOW_HEIGHT); //sets the size of the window
           frameRate(30); //how many times the draw function is called per second
+					SONG.play();
         }
 
         //called repeatedly
         void draw() {
-        	background(SKYCOLOR); //needed in the draw function to "clear" the screen between updates
-	  			// testBuilding.drawAndUpdate();
+					image(b,0,0);
 					backSkyline.moveSkyline();
 					midSkyline.moveSkyline();
 					frontSkyline.moveSkyline();
+					newSun.sunFunction();
         }
 
+		class Sun {
+			var sunPosX, sunPosY, sunRadius;
+
+			Sun(float spX, spY, sR)
+			{
+				sunPosX = spX;
+				sunPosY = spY;
+				sunRadius = sR;
+				sunColor = color(255, 246, 0);
+			}
+
+			void sunFunction() {
+				drawSun();
+				moveSun();
+			}
+
+			void drawSun() {
+				fill(sunColor);
+				ellipse(sunPosX, sunPosY, sunRadius, sunRadius);
+			}
+
+			void moveSun() {
+				sunPosX += 1;
+				if (sunPosX - 100 > width)
+				{
+					// sunColor = color(255,255,255);
+					sunPosX = -40;
+				}
+			}
+		}
 
 		class Skyline {
 			ArrayList<Building> buildingList;
@@ -86,13 +124,14 @@
 		}
 
         class Building {
-        	var xPosition, yPosition, buildingHeight, buildingWidth;
+        	var xPosition, yPosition, buildingHeight, buildingWidth, randColor;
         	var buildingColor;
         	Building(var xPos, var bw, var bH, bC) {
         		buildingHeight = random(30,bH);
         		buildingWidth = bw;
         		xPosition = xPos;
         		buildingColor = bC;
+						randColor = color(random(0,255), random(0,255), random(0,255));
         	}
 
         	void drawAndUpdate()
