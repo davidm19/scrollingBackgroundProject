@@ -4,10 +4,9 @@
 		<script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
 		<script type="text/processing" data-processing-target="mycanvas">
 
-		Building testBuilding = new Building(0, random(30,100));
-		Skyline frontSkyline = new Skyline(random(100, 250), 5.5, color(165, 178, 198)); //lower height interval //building color: color(165, 178, 198)
-		Skyline midSkyline = new Skyline(random(300, 450), 7.5, color(119, 129, 145)); //building color: color(119, 129, 145)
-		Skyline backSkyline = new Skyline(random(500, 580), 9.5, color(69, 74, 84)); //building color: color(69, 74, 84)
+		Skyline frontSkyline = new Skyline(random(100, 250), 5.5, color(160, 160, 160)); //lower height interval //building color: color(165, 178, 198)
+		Skyline midSkyline = new Skyline(random(300, 450), 7.5, color(115, 115, 115)); //building color: color(115, 115, 115)
+		Skyline backSkyline = new Skyline(random(500, 620), 9.5, color(65, 65, 65)); //building color: color(64, 64, 64)
 		Sun newSun = new Sun(-100, 75, 100);
 
         //since these are variables we don't want to ever change in the code, we capitalize them
@@ -54,6 +53,7 @@
 			}
 
 			void drawSun() {
+				noStroke();
 				fill(sunColor);
 				ellipse(sunPosX, sunPosY, sunRadius, sunRadius);
 			}
@@ -127,7 +127,7 @@
         	var xPosition, yPosition, buildingHeight, buildingWidth, randColor;
         	var buildingColor;
         	Building(var xPos, var bw, var bH, bC) {
-        		buildingHeight = random(30,bH);
+        		buildingHeight = random(50,bH);
         		buildingWidth = bw;
         		xPosition = xPos;
         		buildingColor = bC;
@@ -142,6 +142,7 @@
 					}
 
         	void drawBuilding(){
+								stroke(0,0,0);
                 fill(buildingColor);
         				rect(xPosition,WINDOW_HEIGHT- buildingHeight,buildingWidth,buildingHeight);
         	}
