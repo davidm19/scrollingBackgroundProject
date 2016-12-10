@@ -8,7 +8,7 @@
 		Skyline midSkyline = new Skyline(random(300, 450), 7.5, color(115, 115, 115));
 		Skyline backSkyline = new Skyline(random(500, 580), 9.5, color(65, 65, 65));
 
-		Sun newSun = new Sun(0, 75, 100);
+		Sun newSun = new Sun(-50, 75, 100);
 
         //since these are variables we don't want to ever change in the code, we capitalize them
         var WINDOW_WIDTH = screen.width - 15;
@@ -17,12 +17,10 @@
 				var SONG = new Audio('skylineMusic.mp3');
 
 				PImage b;
-				PImage c;
 
         //This function only runs once at the start of the program
         void setup() {
 					b = loadImage("skylineProjWallpaper.jpg");
-					c = loadImage("skylineProjWallpaperNight");
           size(WINDOW_WIDTH, WINDOW_HEIGHT); //sets the size of the window
           frameRate(30); //how many times the draw function is called per second
 					SONG.play();
@@ -60,14 +58,15 @@
 			}
 
 			void moveSun() {
-				sunPosX += 0.1;
+				sunPosX += 0.08;
 				if (sunPosX - 100 > width)
 				{
 					// sunColor = color(255,255,255);
-					sunPosX = -100;
+					sunPosX = -40;
 				}
 			}
 		}
+
 
 		class Skyline {
 			ArrayList<Building> buildingList;
@@ -143,7 +142,7 @@
 					}
 
         	void drawBuilding(){
-								stroke(0,0,0);
+								noStroke();
                 fill(buildingColor);
         				rect(xPosition,WINDOW_HEIGHT- buildingHeight,buildingWidth,buildingHeight);
         	}
