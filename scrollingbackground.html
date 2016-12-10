@@ -134,17 +134,10 @@
 						randColor = color(random(0,255), random(0,255), random(0,255));
         	}
 
-        	void drawAndUpdate()
-					{
-						var testSpeed = 5;
-						drawBuilding();
-						update(testSpeed);
-					}
-
         	void drawBuilding(){
 								noStroke();
                 fill(buildingColor);
-        				rect(xPosition,WINDOW_HEIGHT- buildingHeight,buildingWidth,buildingHeight);
+        				rect(xPosition,WINDOW_HEIGHT-buildingHeight,buildingWidth,buildingHeight);
         	}
 
         	void update(var speed){
