@@ -147,6 +147,11 @@
 				{
 					Building sampleBuilding = buildingList.get(i);
 					sampleBuilding.update(speed);
+					if(sampleBuilding.getX() > screen.width){
+						addBuilding();
+						buildingList.remove(i);
+						i--;
+					}
 				}
 			}
 
@@ -197,11 +202,15 @@
 
         	void update(var speed){
         		xPosition += speed;
-						if(xPosition > width)
+						if(xPosition - 75 > width)
 						{
-							xPosition = -125;
+							xPosition = -115;
 						}
         	}
+
+					int getX(){
+						return xPosition;
+					}
 
         }
         </script>
